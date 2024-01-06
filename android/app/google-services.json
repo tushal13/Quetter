@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "470114617428",
+    "project_id": "qutter-eeb9f",
+    "storage_bucket": "qutter-eeb9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470114617428:android:82da675ffaf9d176e845c1",
+        "android_client_info": {
+          "package_name": "com.example.quetter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlDv2Te5nyGPPk0F5rcTXL1L2-CYuFyzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

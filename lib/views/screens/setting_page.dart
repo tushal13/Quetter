@@ -1,9 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:quetter/views/screens/dwonload_page.dart';
+import 'package:quetter/views/screens/favorite_page.dart';
+import 'package:quetter/views/screens/past_page.dart';
+import 'package:quetter/views/screens/prefrence_page.dart';
+import 'package:quetter/views/screens/your_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../helper/ad_helper.dart';
 import '../../helper/fb_store_helper.dart';
+import 'add_page.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -15,6 +23,14 @@ class SettingPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Settings",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios_new_rounded,
+              color: Colors.white, size: 20),
         ),
       ),
       body: Container(
@@ -65,11 +81,12 @@ class SettingPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('/PrefPage');
+                        Navigator.of(context).push(PageTransition(
+                            child: PrefPage(), type: PageTransitionType.fade));
                       },
                       trailing: const Icon(
                         Icons.arrow_forward_ios_rounded,
-                        size: 30,
+                        size: 20,
                         color: Colors.white,
                       ),
                     ),
@@ -80,7 +97,7 @@ class SettingPage extends StatelessWidget {
                     ListTile(
                       leading: const Icon(
                         FluentIcons.note_add_24_regular,
-                        size: 30,
+                        size: 20,
                         color: Colors.white,
                       ),
                       title: const Text(
@@ -88,7 +105,9 @@ class SettingPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('/AddQuotePage');
+                        Navigator.of(context).push(PageTransition(
+                            child: AddQuotePage(),
+                            type: PageTransitionType.fade));
                       },
                       trailing: const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -110,7 +129,7 @@ class SettingPage extends StatelessWidget {
                             size: 30,
                             color: Colors.white,
                           ),
-                          onTap: () {
+                          onTap: () async {
                             AdHelper.adHelper.rewardedAd.show(
                                 onUserEarnedReward: (ad, reward) async {
                               if (coinsValue < 10) {
@@ -120,6 +139,64 @@ class SettingPage extends StatelessWidget {
                                 )
                                     .then((value) async {
                                   await AdHelper.adHelper.initializeAd();
+                                  await showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                            title: Text(
+                                              'Congratulations'.toUpperCase(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            titleTextStyle: const TextStyle(
+                                                color: Colors.amber,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                            backgroundColor: Colors.white,
+                                            content: SizedBox(
+                                              height: 90,
+                                              child: Stack(children: [
+                                                Positioned(
+                                                  left: 0,
+                                                  right: 30,
+                                                  child: Image.asset(
+                                                    'assets/images/coin.png',
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  left: 10,
+                                                  right: 0,
+                                                  child: Image.asset(
+                                                    'assets/images/coin.png',
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 8,
+                                                  left: -10,
+                                                  right: 0,
+                                                  child: Image.asset(
+                                                    'assets/images/coin.png',
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 70,
+                                                  left: 70,
+                                                  right: 1,
+                                                  bottom: 1,
+                                                  child: Text(
+                                                    "+10 Coins".toUpperCase(),
+                                                    style: const TextStyle(
+                                                        color: Colors.amber,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ]),
+                                            ));
+                                      });
                                 });
                               } else {
                                 await FbStoreHelper.fbStoreHelper
@@ -128,6 +205,64 @@ class SettingPage extends StatelessWidget {
                                 )
                                     .then((value) async {
                                   await AdHelper.adHelper.initializeAd();
+                                  await showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                            title: Text(
+                                              'Congratulations'.toUpperCase(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            titleTextStyle: const TextStyle(
+                                                color: Colors.amber,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                            backgroundColor: Colors.white,
+                                            content: SizedBox(
+                                              height: 90,
+                                              child: Stack(children: [
+                                                Positioned(
+                                                  left: 0,
+                                                  right: 30,
+                                                  child: Image.asset(
+                                                    'assets/images/coin.png',
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  left: 10,
+                                                  right: 0,
+                                                  child: Image.asset(
+                                                    'assets/images/coin.png',
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 8,
+                                                  left: -10,
+                                                  right: 0,
+                                                  child: Image.asset(
+                                                    'assets/images/coin.png',
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 70,
+                                                  left: 70,
+                                                  right: 1,
+                                                  bottom: 1,
+                                                  child: Text(
+                                                    "+10 Coins".toUpperCase(),
+                                                    style: const TextStyle(
+                                                        color: Colors.amber,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ]),
+                                            ));
+                                      });
                                 });
                               }
                             });
@@ -159,7 +294,8 @@ class SettingPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('/PastQuote');
+                        Navigator.of(context).push(PageTransition(
+                            child: PastQuote(), type: PageTransitionType.fade));
                       },
                       trailing: const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -182,7 +318,9 @@ class SettingPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('/FavoritesScreen');
+                        Navigator.of(context).push(PageTransition(
+                            child: FavoritesScreen(),
+                            type: PageTransitionType.fade));
                       },
                       trailing: const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -205,7 +343,9 @@ class SettingPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('/YourQuotes');
+                        Navigator.of(context).push(PageTransition(
+                            child: const YourQuotes(),
+                            type: PageTransitionType.fade));
                       },
                       trailing: const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -218,21 +358,21 @@ class SettingPage extends StatelessWidget {
                       thickness: 1,
                     ),
                     ListTile(
-                      leading: Icon(
+                      leading: const Icon(
                         FluentIcons.arrow_download_24_regular,
                         size: 30,
                         color: Colors.white,
                       ),
                       onTap: () {
-                        // Navigator.of(context).push(
-                        //
-                        // );
+                        Navigator.of(context).push(PageTransition(
+                            child: const DwonloadPage(),
+                            type: PageTransitionType.fade));
                       },
-                      title: Text(
+                      title: const Text(
                         "Dwonload Quotes",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      trailing: Icon(
+                      trailing: const Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 20,
                         color: Colors.white,
@@ -255,13 +395,13 @@ class SettingPage extends StatelessWidget {
                 ),
               ),
               Container(
-                height: size.height * 0.15,
                 width: size.width,
                 decoration: BoxDecoration(
                   color: const Color(0xFF354760),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Column(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTile(
                       leading: Icon(
@@ -269,6 +409,15 @@ class SettingPage extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
+                      onTap: () async {
+                        const String url =
+                            'https://qutterprivacypolicy.blogspot.com/p/privacy-policy.html';
+                        if (await canLaunchUrl(Uri.parse(url))) {
+                          await launchUrl(Uri.parse(url));
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
                       title: Text(
                         "Privacy Policy",
                         style: TextStyle(color: Colors.white, fontSize: 20),
@@ -293,6 +442,15 @@ class SettingPage extends StatelessWidget {
                         "Terms and Conditions",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
+                      onTap: () async {
+                        const String url =
+                            'https://termsandconditionsqutter.blogspot.com/p/last-updated-10-1.html';
+                        if (await canLaunchUrl(Uri.parse(url))) {
+                          await launchUrl(Uri.parse(url));
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
                       trailing: Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 30,

@@ -36,8 +36,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   provider: ^6.1.1
+  sqflite: any
+  path: any
+  path_provider: any
+  screenshot: ^2.1.0
   animated_text_kit: ^4.2.2
-  http: ^1.1.2
+  http: any
   logger: ^2.0.2+1
   awesome_dialog: ^3.1.0
   page_transition: ^2.1.0
@@ -46,17 +50,28 @@ dependencies:
   firebase_auth: ^4.15.2
   cloud_firestore: ^4.6.1
   firebase_storage: ^11.5.6
+  flutter_local_notifications: any
   fluentui_system_icons: ^1.1.223
   google_mobile_ads: ^4.0.0
   google_sign_in: any
-  flutter_bounceable: ^1.1.0
   carousel_slider: any
   share_extend: ^2.0.0
   flutter_tts: ^3.8.5
+  fluttertoast: ^8.2.4
+  url_launcher: ^6.2.3
+  google_fonts: any
+  flutter_launcher_icons: any
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/appicon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

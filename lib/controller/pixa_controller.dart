@@ -15,6 +15,7 @@ class PixaController extends ChangeNotifier {
   List people = [];
   PaletteGenerator? _paletteGenerator;
   Color? dominantColor;
+  Color? textcolor;
 
   PixaController() {
     init();
@@ -47,7 +48,18 @@ class PixaController extends ChangeNotifier {
     );
     if (_paletteGenerator != null) {
       dominantColor = _paletteGenerator!.dominantColor!.color;
+      textcolor = determineTextColor(dominantColor ?? Colors.black);
       notifyListeners();
+    }
+  }
+
+  Color determineTextColor(Color backgroundColor) {
+    if ((backgroundColor.red + backgroundColor.green + backgroundColor.blue) /
+            3 >
+        255 - 100) {
+      return Colors.black;
+    } else {
+      return Colors.white;
     }
   }
 }

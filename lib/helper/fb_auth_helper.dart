@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logger/logger.dart';
 
 import '../views/modal/user_modal.dart';
 import 'fb_store_helper.dart';
@@ -17,6 +18,12 @@ class FBAuthHelper {
   static FBAuthHelper fbAuthHelper = FBAuthHelper._init();
 
   String collectionName = 'users';
+
+  GoogleSignIn googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+    ],
+  );
 
   Future<UserCredential?> registerWithEmailAndPassword(
       String email, String password, String name) async {
@@ -71,24 +78,26 @@ class FBAuthHelper {
 
   Future<UserCredential?> signInWithGoogle() async {
     try {
-      GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
 
-      if (googleUser == null) {
-        print("Google Sign-In canceled");
-        return null;
-      }
-
-      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
       AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
       );
+
       UserCredential userCredential =
           await auth.signInWithCredential(credential);
-      print("Signed in with Google.\nUser: ${userCredential.user}");
+      await FbStoreHelper.fbStoreHelper.addUser(
+          user: UserModal(
+              name: userCredential.user!.displayName,
+              email: userCredential.user!.email,
+              prefs: []));
+      Logger().d("Sign in with Google: ${userCredential.user}");
       return userCredential;
     } catch (e) {
-      print("Google Sign-In error: $e");
+      print("Error signing in with Google: $e");
       return null;
     }
   }

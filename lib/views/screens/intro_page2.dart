@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:quetter/helper/fb_auth_helper.dart';
@@ -69,11 +70,6 @@ class SIntroPage extends StatelessWidget {
                         width: size.width * 0.9,
                         child: TextFormField(
                           controller: nameController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your name ';
-                            }
-                          },
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.name,
                           style: const TextStyle(
@@ -103,11 +99,6 @@ class SIntroPage extends StatelessWidget {
                         width: size.width * 0.9,
                         child: TextFormField(
                           controller: emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your email ';
-                            }
-                          },
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(
@@ -138,11 +129,6 @@ class SIntroPage extends StatelessWidget {
                         child: TextFormField(
                           controller: passwordController,
                           obscureText: !pro.isPasswordVisible,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your password';
-                            }
-                          },
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.visiblePassword,
                           style: const TextStyle(
@@ -181,9 +167,12 @@ class SIntroPage extends StatelessWidget {
                   );
                 }),
                 SizedBox(height: size.height * 0.050),
-                GestureDetector(
-                  onTap: () async {
-                    if (formKey.currentState!.validate()) {
+                Visibility(
+                  visible: nameController.text.isNotEmpty &&
+                      emailController.text.isNotEmpty &&
+                      passwordController.text.isNotEmpty,
+                  child: GestureDetector(
+                    onTap: () async {
                       await FBAuthHelper.fbAuthHelper
                           .registerWithEmailAndPassword(emailController.text,
                               passwordController.text, nameController.text);
@@ -199,27 +188,27 @@ class SIntroPage extends StatelessWidget {
                         type: PageTransitionType.rightToLeftJoined,
                         duration: const Duration(seconds: 1),
                       ));
-                    }
-                  },
-                  child: Container(
-                    width: size.width * 0.5,
-                    height: size.height * 0.05,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14)),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Continue',
-                          style: TextStyle(
-                              letterSpacing: 2,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF36455A),
-                              fontSize: 18),
-                        ),
-                      ],
+                    },
+                    child: Container(
+                      width: size.width * 0.5,
+                      height: size.height * 0.05,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(14)),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Continue',
+                            style: TextStyle(
+                                letterSpacing: 2,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF36455A),
+                                fontSize: 18),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -238,7 +227,7 @@ class SIntroPage extends StatelessWidget {
                         ' OR ',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -251,7 +240,17 @@ class SIntroPage extends StatelessWidget {
                 ),
                 SizedBox(height: size.height * 0.025),
                 GestureDetector(
-                  onTap: () async {},
+                  onTap: () async {
+                    await FBAuthHelper.fbAuthHelper.signInWithGoogle();
+                    Logger().t(FBAuthHelper
+                        .fbAuthHelper.auth.currentUser?.displayName);
+                    Navigator.of(context).pushReplacement(PageTransition(
+                      child: const TintroPage(),
+                      childCurrent: this,
+                      type: PageTransitionType.rightToLeftJoined,
+                      duration: const Duration(seconds: 1),
+                    ));
+                  },
                   child: Container(
                     width: size.width * 0.54,
                     height: size.height * 0.05,

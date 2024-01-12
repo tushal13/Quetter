@@ -87,29 +87,4 @@ class FBSHelper {
         .doc('Background')
         .snapshots();
   }
-  // Future<void> addFavorite({required QuoteModal quote}) async {
-  //   String? imagpath = await uploadImage(imageUrl: quote.image ?? '');
-  //   quote.image = imagpath ?? '';
-  //   Logger().i('image path: ${quote.image}');
-  //   await firestore
-  //       .collection(usersCollection)
-  //       .doc(username)
-  //       .collection('Favorites')
-  //       .doc(quote.id.toString())
-  //       .set({
-  //     'Id': quote.id,
-  //     'Quotes': quote.quote,
-  //     'Author': quote.author,
-  //     'Category': quote.category,
-  //     'Image': quote.image,
-  //   });
-  // }
-  //
-  // Stream<QuerySnapshot<Map<String, dynamic>>> streamFavorites() {
-  //   return firestore
-  //       .collection(usersCollection)
-  //       .doc(username)
-  //       .collection('Favorites')
-  //       .snapshots();
-  // }
 }

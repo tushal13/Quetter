@@ -1,8 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:quetter/controller/quet_controller.dart';
+import 'package:quetter/views/screens/home_page.dart';
 
 import '../../controller/user_controller.dart';
 import '../../helper/fb_auth_helper.dart';
@@ -68,55 +70,73 @@ class FointroPage extends StatelessWidget {
                     List pref = snapshot.data?.data()?['Prefrance'] ?? [];
                     return Consumer<QuoteCntroller>(
                         builder: (context, pro, child) {
-                      return ListView.builder(
-                          itemCount: topics.length,
-                          itemBuilder: (context, index) {
-                            TopicModal topic = topics[index];
-                            return GestureDetector(
-                              onTap: () async {
-                                pro.selectedPrefFunc(pref, topic.name);
-                                userModal.prefs = pref;
-                              },
-                              child: CategoryTile(
-                                category: topic.name,
-                                icon: topic.icon,
-                                isSelected: pref.contains(topic.name),
+                      return Column(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: topics.length,
+                                itemBuilder: (context, index) {
+                                  TopicModal topic = topics[index];
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      pro.selectedPrefFunc(pref, topic.name);
+                                      userModal.prefs = pref;
+                                    },
+                                    child: CategoryTile(
+                                      category: topic.name,
+                                      icon: topic.icon,
+                                      isSelected: pref.contains(topic.name),
+                                    ),
+                                  );
+                                }),
+                          ),
+                          Consumer<UserController>(
+                              builder: (context, pro, child) {
+                            return Visibility(
+                              visible: pref.isNotEmpty,
+                              child: GestureDetector(
+                                onTap: () async {
+                                  await FbStoreHelper.fbStoreHelper
+                                      .addPrefrance(
+                                    user: userModal,
+                                  );
+                                  Navigator.of(context)
+                                      .pushReplacement(PageTransition(
+                                    child: HomePage(),
+                                    childCurrent: this,
+                                    type: PageTransitionType.rightToLeftJoined,
+                                    duration: const Duration(seconds: 1),
+                                  ));
+                                },
+                                child: Container(
+                                  width: size.width * 0.5,
+                                  height: size.height * 0.05,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(14)),
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'Continue',
+                                        style: TextStyle(
+                                            letterSpacing: 2,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xFF36455A),
+                                            fontSize: 18),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             );
-                          });
+                          }),
+                        ],
+                      );
                     });
                   }),
             ),
-            Consumer<UserController>(builder: (context, pro, child) {
-              return GestureDetector(
-                onTap: () async {
-                  await FbStoreHelper.fbStoreHelper.addPrefrance(
-                    user: userModal,
-                  );
-                },
-                child: Container(
-                  width: size.width * 0.5,
-                  height: size.height * 0.05,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(14)),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Continue',
-                        style: TextStyle(
-                            letterSpacing: 2,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF36455A),
-                            fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }),
             SizedBox(height: size.height * 0.010),
           ],
         ),

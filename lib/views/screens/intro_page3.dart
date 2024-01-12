@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:quetter/views/screens/intro_page4.dart';
 
-import '../../helper/fb_auth_helper.dart';
-
 class TintroPage extends StatelessWidget {
   const TintroPage({super.key});
 
@@ -47,7 +45,7 @@ class TintroPage extends StatelessWidget {
                   AnimatedTextKit(
                     animatedTexts: [
                       TyperAnimatedText(
-                        'Welcome, ${FBAuthHelper.fbAuthHelper.auth.currentUser?.displayName} ! Dive into the world of wisdom and let the journey of inspiration begin. Remember, every quote is a new perspective. Enjoy your journey in our Quote App',
+                        'Welcome Dive into the world of wisdom and let the journey of inspiration begin. Remember, every quote is a new perspective. Enjoy your journey in our Quote App',
                         textAlign: TextAlign.center,
                         textStyle: const TextStyle(
                           fontSize: 20,

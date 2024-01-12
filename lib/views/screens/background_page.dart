@@ -15,6 +15,7 @@ class BackgroundPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text(
             "Background",
@@ -25,8 +26,7 @@ class BackgroundPage extends StatelessWidget {
                 Icons.arrow_back,
               ),
               onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.of(context).pop();
               }),
           backgroundColor: Colors.transparent,
           actions: [
@@ -36,7 +36,7 @@ class BackgroundPage extends StatelessWidget {
                     const EdgeInsets.only(left: 8, top: 5, bottom: 5, right: 8),
                 margin: const EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: const Color(0xFF354760),
                   borderRadius: BorderRadius.circular(26),
                 ),
                 child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(

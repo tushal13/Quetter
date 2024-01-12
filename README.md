@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="[<path/to/your/app/logo.png>](https://github.com/tushal13/quetter/assets/113960162/7b5ba370-646c-40ec-b961-f2b60468df64)" alt="Quetter" />
+  <img src="https://github.com/tushal13/quetter/assets/113960162/7b5ba370-646c-40ec-b961-f2b60468df64" alt="Quetter" />
 </p>
 
 <h1 align="center"><Your App Name></h1>![appicon]()

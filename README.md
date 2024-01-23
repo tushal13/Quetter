@@ -244,6 +244,51 @@ A Flutter package for displaying toast messages.
 A package for updating Flutter launcher icons.
 
 
+## Screenshots
+
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/aaeb9ddb-4801-40d9-a156-0f8c9a0bab0d" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/2bca049c-11d2-42bd-890c-8003dfd3ea10" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/523634d5-8ff6-4535-81c9-a683ed2c8d46" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/7e10f3e8-384b-4e56-995d-da4f328af8f4" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/c038d58a-38a0-462e-9ccb-ff710d9209d4" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/925bee41-c18d-49e5-94ab-dd20fe37a692" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/3a333b29-863e-4307-9e4b-e02ed1e3029a" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/c4f27753-fae9-4c8e-b4a6-7cd5d08e1231" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/921a1b09-2bfc-44b7-a9b4-05e7ba1fd3c1" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/a5e40f82-9117-4c4a-9fc3-fbe994be8b8d" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/fc8f14e9-f575-4e5c-a984-5b5f4aaa95d8" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/f7067ccf-adfd-45c7-9227-4c84562a2f62" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/ce6a4f75-408a-406e-9859-8b038631e149" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/2bd5ffb2-8b12-4759-b770-96bc1e4a94d8" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/69fca12c-b30e-48cf-82a7-3c96cc00fc47" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/5f46accd-7822-4385-a1a9-45a3fbbd6015" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/7b42ed3d-123a-4df3-9434-9661c310d7ac" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/415a17a5-e88e-402a-b780-e39c225ce363" alt="Image" width="200"> 
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/2d63d47e-187d-4018-a1f4-de3d9571eb4c" alt="Image" width="200">
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/88fd13a5-07cf-4f03-b08f-72075e7c52f8" alt="Image" width="200">
+
+<img src="https://github.com/tushal13/Quetter/assets/113960162/2c899a72-27eb-47ee-8822-7c65aa5f276c" alt="Image" width="200">
+
 
 ## Getting Started
 

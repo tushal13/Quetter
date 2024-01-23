@@ -289,7 +289,7 @@ A package for updating Flutter launcher icons.
 
 <img src="https://github.com/tushal13/Quetter/assets/113960162/2c899a72-27eb-47ee-8822-7c65aa5f276c" alt="Image" width="200">
 
-### [Video](https://pub.dev/packages/fluttertoast)
+### [Video](https://drive.google.com/file/d/11AqETWIQUkw1bjlVO3SirI3QJDgu7Ovf/view?usp=sharing)
 
 ## Getting Started
 

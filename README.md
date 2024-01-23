@@ -94,8 +94,8 @@
  ┃ ┃ ┃ ┣ 📜 past_page.dart                                                                                                                                
  ┃ ┃ ┃ ┣ 📜 prefrence_page.dart                                                                                                                                
  ┃ ┃ ┃ ┣ 📜 qoute_priview.dart                                                                                                                                
- ┃ ┃ ┃ ┣ 📜 setting_page.dart
- ┃ ┃ ┃ ┣ 📜 splesh_screen.dart 
+ ┃ ┃ ┃ ┣ 📜 setting_page.dart                                                                  
+ ┃ ┃ ┃ ┣ 📜 splesh_screen.dart                                                                 
  ┃ ┃ ┃ ┗ 📜 your_page.dart                                                                                                                                
  ┃ ┣ 📜 firebase_options.dart                                                                                                                                
  ┃ ┣ 📜 main.dart                                                                               
